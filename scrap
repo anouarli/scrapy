@@ -1,0 +1,32 @@
+def parse(self,response):
+        item = Items()
+       
+        for href in response.xpath(self.getAllCategoriesXpath):
+            url = response.urljoin(href.extract())    
+                     
+ 
+            Title = response.xpath(self.TitleXpath).extract()
+   #     Title = self.cleanText(self.parseText(self.listToStr(Title)))
+            
+            Category = response.xpath(self.CategoryXpath).extract()
+   #     Category = self.cleanText(self.parseText(Category))
+ 
+            Price = response.xpath(self.PriceXpath).extract()
+  #      Price = self.cleanText(self.parseText(self.listToStr(Price)))
+ 
+            Features = response.xpath(self.FeaturesXpath).extract()
+   #     Features = self.cleanText(self.parseText(self.listToStr(Features)))
+ 
+   #     Description = response.xpath(self.DescriptionXpath).extract()
+   #     Description = self.cleanText(self.parseText(self.listToStr(Description)))
+
+            Specs = response.xpath(self.SpecsXpath).extract()
+  #      Specs = self.cleanText(self.parseText(Specs))
+
+            item['Title']           = Title
+            item['Category']        = Category
+            item['Price']           = Price
+            item['Features']        = Features
+ #       item['Description']     = Description
+            item['Specs']           = Specs
+            yield item
